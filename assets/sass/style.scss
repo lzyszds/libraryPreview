@@ -1,0 +1,341 @@
+:root {
+  --themeColor: #5161ce;
+  --bgcolor: #fff !important;
+  --darkBgcolor: rgb(24, 23, 29);
+  --darkContentBgcolor: #1e1e1e;
+  --darkColor: rgb(255, 255, 255, 0.8);
+  --textcolor: #fe9600;
+  --borderColor: #ffe14d;
+  --delColor: rgb(220, 20, 60);
+  --article-cover: linear-gradient(
+    180deg,
+    hsla(0, 0%, 98%, 0) 0,
+    hsla(0, 0%, 98%, 0.013) 8.1%,
+    hsla(0, 0%, 98%, 0.049) 15.5%,
+    hsla(0, 0%, 98%, 0.104) 22.5%,
+    hsla(0, 0%, 98%, 0.175) 29%,
+    hsla(0, 0%, 98%, 0.259) 35.3%,
+    hsla(0, 0%, 98%, 0.352) 41.2%,
+    hsla(0, 0%, 98%, 0.45) 47.1%,
+    hsla(0, 0%, 98%, 0.55) 52.9%,
+    hsla(0, 0%, 98%, 0.648) 58.8%,
+    hsla(0, 0%, 98%, 0.741) 64.7%,
+    hsla(0, 0%, 98%, 0.825) 71%,
+    hsla(0, 0%, 98%, 0.896) 77.5%,
+    hsla(0, 0%, 98%, 0.951) 84.5%,
+    hsla(0, 0%, 98%, 0.987) 91.9%,
+    #fff
+  );
+  --broRadius: 9px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-xxl: 1600px;
+  --purple: rgb(123, 31, 162);
+  --violet: rgb(103, 58, 183);
+  --pink: rgb(244, 143, 177);
+}
+
+::selection {
+  background: #344449;
+  color: #fff;
+  text-shadow: none;
+}
+
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+* {
+  -webkit-user-drag: none;
+}
+
+.Cannotbeobtained {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body,
+html {
+  font-size: 10px;
+  margin: 0;
+  padding: 0;
+}
+#app {
+  font-size: 1.6rem;
+}
+a {
+  list-style: none;
+  text-decoration: none;
+  color: var(--themeColor);
+}
+
+.dark {
+  transition: 0.3s;
+}
+
+svg {
+  display: initial;
+}
+
+button,
+a {
+  cursor: var(--linkCup) !important;
+}
+
+li {
+  list-style: none;
+}
+
+.decoration {
+  font-family: "dindin";
+  color: #fff;
+  cursor: var(--linkCup);
+  text-shadow: 1px 3px 3px #000;
+  transition: 0.6s;
+  background: linear-gradient(#fff, #fff) no-repeat left 100%/0 2px;
+}
+
+.decoration:hover {
+  color: #5161ce;
+  fill: #5161ce !important;
+  text-shadow: 1px -1px 3px #fff;
+  background: linear-gradient(#fff, #fff) no-repeat left 100% / 100% 2px;
+}
+
+.lzy-center {
+  width: 100%;
+  text-align: center;
+}
+
+.fa-comment {
+  width: 50px;
+  height: 50px;
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.md.hydrated {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 修改谷歌浏览器存储密码 自动给input添加样式 */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: #000 !important;
+  /* //这个地方的颜色是字体颜色，可以根据实际情况修改 */
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  /* //设置input输入框的背景颜色为透明色 */
+  background-color: transparent;
+  /* //设置input输入框的背景颜色为透明色 */
+  background-image: none;
+  transition: background-color 50000s ease-in-out 0s;
+}
+
+input {
+  background-color: transparent;
+  /* //设置input输入框的背景颜色为透明色 */
+}
+
+input:-webkit-autofill::selection {
+  -webkit-text-fill-color: #fff !important;
+}
+
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgb(245, 245, 245);
+  background-color: #eee;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 8px;
+  background-color: rgb(245, 245, 245);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--themeColor) !important;
+  border-radius: 20px;
+  border: 1px solid rgb(245, 245, 245);
+  transition: 1s all;
+}
+
+.compensate-for-scrollbar {
+  padding: 0 !important;
+}
+
+#app {
+  cursor: var(--normalCup);
+  position: relative;
+}
+
+#app a {
+  cursor: var(--linkCup);
+}
+
+#app input {
+  cursor: var(--verticalCup);
+}
+
+#app textarea {
+  cursor: var(--verticalCup);
+}
+
+.maskBg {
+  width: 25px;
+  height: 25px;
+  position: fixed;
+  right: 345px;
+  top: 18px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #00000030;
+  animation: slide-out-fwd-bl_lzy 2s 1;
+}
+
+html body.compensate-for-scrollbar {
+  overflow: auto !important;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  font-family: "Fira Code VF";
+  font-variation-settings: "wght" 430;
+}
+
+body {
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.8);
+}
+.dark-mode body {
+  background-color: #091a28;
+  color: #ebf4f1;
+}
+.sepia-mode body {
+  background-color: #f1e7d0;
+  color: #433422;
+}
+
+body.loading {
+  overflow: hidden !important;
+}
+
+html.dark {
+  background-color: var(--darkBgcolor);
+}
+
+#nprogress .bar {
+  background: rgb(255, 0, 119) !important;
+}
+
+.themeCard {
+  border: 3px solid #000;
+  border-radius: 20px;
+  background-color: var(--themeColor);
+  padding: 6px;
+  font-family: "dindin";
+}
+
+.mr-1 {
+  margin-right: 10px;
+}
+
+.tags .taglzy {
+  background-color: var(--themeColor);
+  color: #fff;
+  border: 1px solid #000;
+  font-size: 12px;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.navbar-logo {
+  height: 60px;
+}
+
+.navbar-logo svg.logoSvg {
+  display: inline-block;
+  width: 100px;
+  height: 60px;
+}
+
+.navbar-logo svg.logoSvg text {
+  letter-spacing: 10px;
+  font-size: 120px;
+  animation: stroke 5s infinite alternate;
+  line-height: 60px;
+  animation-delay: 1s;
+}
+
+#timelinetext {
+  font-family: "momo ink night";
+}
+
+@keyframes stroke {
+  0% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgba(255, 255, 255, 1);
+    stroke-dashoffset: 25%;
+    stroke-dasharray: 0 50%;
+    stroke-width: 10;
+  }
+
+  70% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgba(255, 255, 255, 1);
+    stroke-width: 2;
+  }
+
+  85% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: rgba(255, 255, 255, 1);
+    stroke-width: 1;
+  }
+
+  95%,
+  100% {
+    fill: rgba(255, 255, 255, 1);
+    stroke: rgba(54, 95, 160, 0);
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 30% 0;
+    stroke-width: 50;
+  }
+}
