@@ -1,75 +1,76 @@
-# Nuxt 3 Minimal Starter
+# 项目概述
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+本项目是一个图书借阅平台前端界面，使用 TypeScript、Vue 3、Nuxt 和 Axios 开发。 该界面提供图书查询、借阅、用户登录等功能，方便用户使用图书借阅平台。
 
-## Setup
+# 项目技术栈
 
-Make sure to install the dependencies:
+## 前端技术:
 
-```bash
-# npm
-npm install
+- TypeScript
+- Vue 3
+- Nuxt
+- Axios
 
-# pnpm
-pnpm install
+# 项目功能
 
-# yarn
-yarn install
+## 图书查询
 
-# bun
-bun install
-```
+支持根据图书名称、作者、出版社等条件查询图书
+支持查看图书详情
 
-## Development Server
+## 图书借阅
 
-Start the development server on `http://localhost:3000`:
+支持用户登录
+支持用户借阅图书
+支持用户查询借阅记录
 
-```bash
-# npm
-npm run dev
+## 其他功能
 
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
+支持修改用户密码
+项目部署
+安装 Node.js
+克隆项目代码
+运行
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+ npm install
 ```
 
-Locally preview production build:
+# 安装项目依赖
 
-```bash
-# npm
-npm run preview
+配置 API 接口地址
+运行 npm run dev 启动开发环境
+访问 http://localhost:3000 查看界面
 
-# pnpm
-pnpm run preview
+## 项目截图
 
-# yarn
-yarn preview
+### 图书列表:
 
-# bun
-bun run preview
-```
+[移除了无效网址]
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+### 图书详情:
+
+[移除了无效网址]
+
+### 借阅图书:
+
+[移除了无效网址]
+
+# 项目总结
+
+本项目是一个功能完善的图书借阅平台前端界面，使用 TypeScript、Vue 3、Nuxt 和 Axios 开发，代码结构清晰，易于维护。 该项目可以作为学习 TypeScript、Vue 3、Nuxt 和 Axios 的参考项目。
+
+## 感谢以下项目对本项目的帮助：
+
+Vue 3: https://vuejs.org/
+
+Nuxt: https://nuxtjs.org/
+
+Axios: https://github.com/axios/axios
+
+联系方式
+如果您有任何问题或建议，请联系我：
+1024327189@qq.com
+
+GitHub：https://github.com/lzyszds/libraryPreview
+ 
