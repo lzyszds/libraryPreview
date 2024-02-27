@@ -48,8 +48,8 @@ const colorMode = useColorMode();
       h2 {
         position: relative;
         padding-left: 20px;
-        &::after{
-          content: '';
+        &::after {
+          content: "";
           position: absolute;
           left: 0;
           top: 50%;

@@ -2,7 +2,7 @@
 import { getBooklist } from "../api/books";
 const booklist = ref<any>();
 const { data } = await getBooklist();
-booklist.value = data;
+booklist.value = data.data;
 const host = import.meta.env.VITE_APP_HOST;
 </script>
 
@@ -21,7 +21,7 @@ const host = import.meta.env.VITE_APP_HOST;
 <style lang="scss" scoped>
 .book {
   display: grid;
-  gap:0 5px;
+  gap: 0 5px;
   grid-template-areas:
     "cover name"
     "cover author"
