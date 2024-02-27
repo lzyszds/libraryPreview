@@ -17,7 +17,8 @@ export default defineNuxtConfig({
   },
   css: [
     //系统默认样式
-    '/assets/sass/style.scss'
+    '/assets/sass/style.scss',
+    '/assets/font/font.css'
   ],
   plugins: [
 
