@@ -44,11 +44,27 @@ const colorMode = useColorMode();
   .bookContent {
     width: 1280px;
     margin: 0 auto;
+    .hot {
+      h2 {
+        position: relative;
+        padding-left: 20px;
+        &::after{
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 5px;
+          height: 30px;
+          background-color: #f90;
+          border-radius: 10px;
+        }
+      }
+    }
     .bookList {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
     }
   }
 }
