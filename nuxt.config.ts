@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   modules: [
     '@element-plus/nuxt',
     'nuxt-icon',
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
   ],
   alias: {
     "~": "/<srcDir>",
