@@ -3,7 +3,7 @@ const colorMode = useColorMode();
 </script>
 
 <template>
-  <header class="header">
+  <header class="header" id="header">
     <div class="header_child">
       <div class="logo">
         <img src="../assets/images/logo.png" alt="" />
@@ -46,6 +46,7 @@ const colorMode = useColorMode();
   top: 0;
   left: 0;
   z-index: 2;
+  backdrop-filter: blur(0);
   .header_child {
     width: 60%;
     height: 100%;
@@ -106,7 +107,6 @@ const colorMode = useColorMode();
           font-size: 1.5rem;
           transition: 0.5s color;
           font-weight: 600;
-          
         }
         &:hover a {
           color: var(--themeColor);
@@ -143,8 +143,8 @@ const colorMode = useColorMode();
   h3 {
     filter: invert(1);
   }
-  ul{
-    a{
+  ul {
+    a {
       filter: invert(1);
     }
   }
