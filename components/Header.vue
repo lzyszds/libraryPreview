@@ -1,5 +1,21 @@
 <script setup lang="ts">
 const colorMode = useColorMode();
+const route = useRoute();
+const router = useRouter();
+const keyword = ref("");
+if (route.path === "/stack") {
+  keyword.value = route.query.keyword as string;
+}
+const searchbook = () => {
+  if(keyword.value){
+    router.push(`/stack?keyword=${keyword.value}`);
+  } else {
+    router.push(`/stack`);
+  }
+};
+const empty = () => {
+  keyword.value = "";
+};
 </script>
 
 <template>
@@ -10,13 +26,18 @@ const colorMode = useColorMode();
         <h3>书香雅苑</h3>
       </div>
       <div class="search">
-        <input type="text" placeholder="书犹药也，善读之可以医愚" />
-        <span><Icon name="mingcute:search-line"></Icon></span>
+        <input
+          v-model="keyword"
+          type="text"
+          placeholder="书犹药也，善读之可以医愚"
+          @keydown.enter="searchbook"
+        />
+        <span @click="searchbook"><Icon name="mingcute:search-line"></Icon></span>
       </div>
       <ul>
-        <li><NuxtLink to="/">首页</NuxtLink></li>
-        <li><NuxtLink to="/stack">书库</NuxtLink></li>
-        <li><NuxtLink to="/mine">我的</NuxtLink></li>
+        <li @click="empty"><NuxtLink to="/">首页</NuxtLink></li>
+        <li @click="empty"><NuxtLink to="/stack">书库</NuxtLink></li>
+        <li @click="empty"><NuxtLink to="/mine">我的</NuxtLink></li>
         <li class="isDark">
           <Icon
             @click="$colorMode.preference = 'dark'"
@@ -76,7 +97,9 @@ const colorMode = useColorMode();
         border: none;
         outline: none;
         padding: 10px 20px;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+        font-family: "dindin";
+        width: 100%;
       }
       span {
         cursor: pointer;

@@ -15,15 +15,19 @@ const host = import.meta.env.VITE_APP_HOST;
       <h1>《{{ data.book_name }}》</h1>
       <p>
         <span>作者：</span>
-        <a href="">{{ data.author }}</a>
+        <nuxt-link :to="'/stack?keyword=' + data.author">{{ data.author }}</nuxt-link>
       </p>
       <p>
         <span>学科：</span>
-        <a href="">{{ data.category_name }}</a>
+        <nuxt-link :to="'/stack?keyword=' + data.category_name">
+          {{ data.category_name }}
+        </nuxt-link>
       </p>
       <p>
         <span>出版社：</span>
-        <a href=""> {{ data.publisher }}</a>
+        <nuxt-link :to="'/stack?keyword=' + data.publisher">
+          {{ data.publisher }}
+        </nuxt-link>
       </p>
       <p><span>出版日期：</span>{{ data.publish_date }}</p>
 
@@ -52,7 +56,6 @@ const host = import.meta.env.VITE_APP_HOST;
 .container {
   width: 1280px;
   margin: 200px auto;
-  background-color: #fff;
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -104,7 +107,6 @@ const host = import.meta.env.VITE_APP_HOST;
       font-weight: 600;
       position: relative;
       padding-left: 10px;
-      background-color: #eee;
       &:after {
         content: "";
         width: 5px;
@@ -119,6 +121,16 @@ const host = import.meta.env.VITE_APP_HOST;
   }
   .el-button {
     cursor: pointer !important;
+  }
+}
+
+.dark-mode{
+  .container{
+    box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+    .el-button{
+      --el-button-text-color: #fff;
+      --el-button-background-color: var(--themeColor);
+    }
   }
 }
 </style>
