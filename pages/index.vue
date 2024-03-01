@@ -4,7 +4,6 @@ import {
   getNewBookList,
   getBookListByField,
   getTopNCategories,
-  getBookList,
 } from "../api/books";
 // 使用颜色模式
 const colorMode = useColorMode();
@@ -28,11 +27,12 @@ try {
     getHotBookList(),
     getNewBookList(),
     getBookListByField(categoryValue.value, 1, 5, "category_name"),
-    getBookList("网文小说", 1, 5),
+    getBookListByField("小说", 1, 5, "category_name"),
   ]);
   hot.value = results[0].data;
   news.value = results[1].data;
   category.value = results[2].data;
+  fiction.value = results[3].data;
 } catch (error) {}
 
 // 激活分类
@@ -94,6 +94,7 @@ const activeCategory = (item: string) => {
         </div>
       </div>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -118,7 +119,7 @@ const activeCategory = (item: string) => {
   }
   .bookContent {
     width: 1280px;
-    margin: 0 auto;
+    margin: 0 auto 100px;
     h2.title {
       position: relative;
       padding-left: 20px;
