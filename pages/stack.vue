@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { searchBook } from "../api/books";
+import { getBookList } from "../api/books";
 import { useRoute } from "vue-router";
 const router = useRoute();
 const limit = 2;
@@ -9,7 +9,7 @@ const bookResult = ref<{ data: any[]; count: number }>({
 });
 const alterBookList = async (val: number) => {
   const keyword = router.query.keyword ? (router.query.keyword as string) : "";
-  const { data } = await searchBook(keyword, val, limit);
+  const { data } = await getBookList(keyword, val, limit);
   bookResult.value = data;
 };
 alterBookList(1);

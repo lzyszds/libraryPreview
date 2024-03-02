@@ -82,6 +82,8 @@ const empty = () => {
       display: flex;
       align-items: center;
       gap: 5px;
+      cursor: pointer;
+      user-select: none;
       img {
         width: 30px;
       }
