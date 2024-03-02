@@ -2,7 +2,7 @@
 import { getBookList } from "../api/books";
 import { useRoute } from "vue-router";
 const router = useRoute();
-const limit = 2;
+const limit = 20;
 const bookResult = ref<{ data: any[]; count: number }>({
   data: [],
   count: 0,

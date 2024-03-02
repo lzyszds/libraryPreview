@@ -14,7 +14,11 @@ const host = import.meta.env.VITE_APP_HOST;
 
 <template>
   <div class="book" @click="readIntDuction()">
-    <img :src="host + item.cover" alt="" />
+    <img
+      :src="host + item.cover"
+      alt=""
+      :on-error="host + '/static/images/coverUndefined.png'"
+    />
     <div class="name">{{ item.book_name }}</div>
     <div class="category">
       <span># {{ item.category_name }}</span>
