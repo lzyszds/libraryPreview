@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getBookList } from "../api/books";
+import { getBookList } from "../api/bookApi";
 import { useRoute } from "vue-router";
 const router = useRoute();
 const limit = 20;
@@ -110,3 +110,4 @@ watch(
   }
 }
 </style>
+../api/bookApi

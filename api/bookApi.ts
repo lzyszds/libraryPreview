@@ -10,7 +10,7 @@ const host = import.meta.env.VITE_APP_HOST;
  */
 
 export const getBookList = async (keyword: string, page: number, limit: number) => {
-  const response = await useFetch(`${host}/Api/Book/getBookList`, {
+  const response = await useFetch(`${host}/Api/Book/getBookList`, { 
     method: "GET",
     params: {
       search: keyword,

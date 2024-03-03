@@ -4,7 +4,7 @@ import {
   getNewBookList,
   getBookListByField,
   getTopNCategories,
-} from "../api/books";
+} from "../api/bookApi";
 // 使用颜色模式
 const colorMode = useColorMode();
 // 获取热门分类
@@ -165,3 +165,4 @@ const activeCategory = (item: string) => {
   }
 }
 </style>
+../api/bookApi

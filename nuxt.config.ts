@@ -22,6 +22,16 @@ export default defineNuxtConfig({
   ],
   plugins: [
 
-  ]
-
+  ],
+  vite: {
+    server: {
+      proxy: {
+        '/admin': {
+          target: "http://localhost:4090",  //这里是接口地址
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/admin/, '')
+        },
+      },
+    }
+  },
 })

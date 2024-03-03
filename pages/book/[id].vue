@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getBookInfo } from "../../api/books";
+import { getBookInfo } from "../../api/bookApi";
 import { useRoute } from "vue-router";
 const id = useRoute().params.id as string;
 const { data } = await getBookInfo(id);
@@ -134,3 +134,4 @@ const host = import.meta.env.VITE_APP_HOST;
   }
 }
 </style>
+../../api/bookApi
