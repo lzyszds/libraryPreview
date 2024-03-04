@@ -1,17 +1,15 @@
 <script setup lang="ts">
 import { userEdit, voucherToken } from "../api/userApi";
-import type { User } from "../types/user";
 import { useStore } from "../store";
 const store = useStore();
 const loading = ref(true);
-
 const save = () => {
   const info = {
-    name: userInfo.name,
-    email: userInfo.email,
-    phone: userInfo.phone,
-    address: userInfo.address,
-    sex: userInfo.sex,
+    name: store.userInfo.name,
+    email: store.userInfo.email,
+    phone: store.userInfo.phone,
+    address: store.userInfo.address,
+    sex: store.userInfo.sex,
   };
   userEdit(info).then(async (res) => {
     if (res.code === 200) {
@@ -21,7 +19,7 @@ const save = () => {
         type: "success",
       });
       const result = await voucherToken();
-      localStorage.setItem("userInfo", JSON.stringify(result));
+      store.userInfo = result;
     }
   });
 };
@@ -31,7 +29,7 @@ onMounted(() => {
 </script>
 <template>
   <div class="center" v-if="loading == false">
-    <h1 style="text-align: center">个人信息修改中心</h1>
+    <h1 style="text-align: center">信息修改中心</h1>
     <div class="info">
       <p>
         用户名：<ElInput color="#5161ce" v-model="store.userInfo.username" disabled />
@@ -55,12 +53,9 @@ onMounted(() => {
 </template>
 
 <style lang="scss" scoped>
+@import url('../assets/sass/element.scss');
 .center {
-  h1 {
-    color: var(--themeColor);
-    margin-bottom: 50px;
-    text-shadow: 0 0 1px #000;
-  }
+  
   .info {
     width: 80%;
     height: 50%;
@@ -71,20 +66,6 @@ onMounted(() => {
       line-height: 40px;
     }
   }
-  :deep(.el-button--primary) {
-    --el-button-border-color: var(--themeColor) !important;
-    --el-button-hover-border-color: var(--themeHoverColor) !important;
-    --el-button-primary-color: var(--themeColor) !important;
-    --el-button-primary-hover-color: var(--themeHoverColor) !important;
-    --el-button-bg-color: var(--themeColor) !important;
-    --el-button-hover-bg-color: var(--themeHoverColor) !important;
-    cursor: pointer !important;
-  }
-  :deep(.el-input) {
-    --el-color-primary: var(--themeColor) !important;
-  }
-  :deep(.el-radio-group) {
-    --el-color-primary: var(--themeColor) !important;
-  }
+  
 }
 </style>

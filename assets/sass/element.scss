@@ -1,9 +1,15 @@
-@forward "/node_modules/element-plus/theme-chalk/src/common/var.scss" with (
-  $colors: (
-    "primary": (
-      "base": #1baeae,
-    ),
-  )
-);
-
-@use "/node_modules/element-plus/theme-chalk/src/index.scss" as *;
+.el-button--primary {
+  --el-button-border-color: var(--themeColor) !important;
+  --el-button-hover-border-color: var(--themeHoverColor) !important;
+  --el-button-primary-color: var(--themeColor) !important;
+  --el-button-primary-hover-color: var(--themeHoverColor) !important;
+  --el-button-bg-color: var(--themeColor) !important;
+  --el-button-hover-bg-color: var(--themeHoverColor) !important;
+  cursor: pointer !important;
+}
+.el-input {
+  --el-color-primary: var(--themeColor) !important;
+}
+.el-radio-group {
+  --el-color-primary: var(--themeColor) !important;
+}

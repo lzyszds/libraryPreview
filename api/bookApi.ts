@@ -1,6 +1,7 @@
 const host = import.meta.env.VITE_APP_HOST;
 
 
+
 /**
  * 模糊查询以及指定页数的书籍列表
  * @param keyword 关键字
@@ -10,7 +11,7 @@ const host = import.meta.env.VITE_APP_HOST;
  */
 
 export const getBookList = async (keyword: string, page: number, limit: number) => {
-  const response = await useFetch(`${host}/Api/Book/getBookList`, { 
+  const response = await useFetch(`${host}/Api/Book/getBookList`, {
     method: "GET",
     params: {
       search: keyword,
@@ -93,3 +94,5 @@ export const getBookInfo = async (id: string) => {
   }) as any;
   return response.data.value;
 }
+
+

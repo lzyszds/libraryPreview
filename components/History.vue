@@ -1,13 +1,28 @@
-<script setup lang='ts'>
-
+<script setup lang="ts">
+import { getBorrowedBooks } from "../api/bookloanApi";
+import type { Book } from "../types/book";
+const books = ref<Book[]>([]);
+onMounted(async () => {
+  books.value = await getBorrowedBooks();
+  console.log(`lzy  books.value :`, books.value);
+});
 </script>
 
 <template>
-    <div>
-      历史记录
+  <div>
+    <h1 style="text-align: center">借阅记录中心</h1>
+    <div v-if="books.length != 0" class="history">
+      <Book v-for="(item, index) in books" :key="index" :item="item"></Book>
     </div>
+    <!-- 提醒没有数据 -->
+    <div v-else style="text-align: center; margin-top: 20px">
+      <el-empty description="书籍是最好的朋友，快来结识您的新朋友吧！">
+        <el-button type="primary">刷新</el-button>
+      </el-empty>
+    </div>
+  </div>
 </template>
 
-<style lang='scss' scoped>
-
+<style lang="scss" scoped>
+@import url("../assets/sass/element.scss");
 </style>

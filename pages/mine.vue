@@ -2,17 +2,19 @@
 import { useRouter } from "vue-router";
 import { useStore } from "../store";
 import { voucherToken } from "../api/userApi";
+import { useSessionStorage } from "@vueuse/core";
 import Center from "../components/Center.vue";
 import History from "../components/History.vue";
 import Collect from "../components/Collect.vue";
+const activeTool = useSessionStorage("activeTool", "Center");
 
-const hasRander = ref(true);
 const components: any = {
   Center,
   History,
   Collect,
 };
 const store = useStore();
+const hasRander = ref(false);
 
 onMounted(async () => {
   const token = localStorage.getItem("token");
@@ -27,7 +29,7 @@ onMounted(async () => {
     });
   } else {
     store.userInfo = await voucherToken();
-    console.log(`lzy  store.userInfo:`, store.userInfo);
+    hasRander.value = true;
   }
 });
 const tools = [
@@ -47,12 +49,14 @@ const tools = [
     component: "Collect",
   },
 ];
-const activeTool = ref("Center");
+const isActive = (item: any) => {
+  return activeTool.value === item.component;
+};
 </script>
 
 <template>
   <div class="mine">
-    <div class="card">
+    <div class="card" v-if="hasRander">
       <div class="tools">
         <div class="info">
           <img src="../assets/images/user.png" alt="" />
@@ -62,7 +66,7 @@ const activeTool = ref("Center");
         <div
           v-for="(item, index) in tools"
           :key="index"
-          :class="{ active: activeTool == item.component }"
+          :class="{ active: isActive(item) }"
           @click="activeTool = item.component"
           class="item"
         >
@@ -136,6 +140,13 @@ const activeTool = ref("Center");
           font-size: 22px;
         }
       }
+    }
+  }
+  .content {
+    :deep(h1) {
+      color: var(--themeColor);
+      margin-bottom: 50px;
+      text-shadow: 0 0 1px #000;
     }
   }
 }

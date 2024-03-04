@@ -16,7 +16,9 @@ useEventListener("scroll", () => {
 <template>
   <div id="app" ref="main">
     <Header />
-    <NuxtPage />
+    <Suspense>
+      <NuxtPage />
+    </Suspense>
   </div>
 </template>
 
