@@ -1,38 +1,53 @@
 <script setup lang="ts">
-import { useLocalStorage } from "@vueuse/core";
-import { voucherToken } from "../api/userApi";
-//如果未登录，跳转到登录页面
 import { useRouter } from "vue-router";
-const token = useLocalStorage("token", "");
-const data = ref(await voucherToken());
+import { useStore } from "../store";
+import { voucherToken } from "../api/userApi";
+import Center from "../components/Center.vue";
+import History from "../components/History.vue";
+import Collect from "../components/Collect.vue";
 
-if (!token || typeof data.value === "string") {
-  const router = useRouter();
-  router.push("/login");
-  ElNotification({
-    title: "提示",
-    message: "请先登录",
-    type: "warning",
-  });
-}
+const hasRander = ref(true);
+const components: any = {
+  Center,
+  History,
+  Collect,
+};
+const store = useStore();
+
+onMounted(async () => {
+  const token = localStorage.getItem("token");
+  //如果未登录，跳转到登录页面
+  if (!token) {
+    const router = useRouter();
+    router.push("/login");
+    ElNotification({
+      title: "提示",
+      message: "请先登录",
+      type: "warning",
+    });
+  } else {
+    store.userInfo = await voucherToken();
+    console.log(`lzy  store.userInfo:`, store.userInfo);
+  }
+});
 const tools = [
   {
     title: "个人中心",
     icon: "typcn:user-outline",
-    component: "center",
+    component: "Center",
   },
   {
     title: "借阅历史",
     icon: "typcn:th-small-outline",
-    component: "history",
+    component: "History",
   },
   {
     title: "我的收藏",
     icon: "typcn:star-outline",
-    component: "collect",
+    component: "Collect",
   },
 ];
-const activeTool = ref("center");
+const activeTool = ref("Center");
 </script>
 
 <template>
@@ -41,8 +56,8 @@ const activeTool = ref("center");
       <div class="tools">
         <div class="info">
           <img src="../assets/images/user.png" alt="" />
-          <h2>{{ data?.username }}</h2>
-          <p>{{ data?.email }}</p>
+          <h2>{{ store.userInfo?.username }}</h2>
+          <p>{{ store.userInfo?.email }}</p>
         </div>
         <div
           v-for="(item, index) in tools"
@@ -54,6 +69,9 @@ const activeTool = ref("center");
           <Icon :name="item.icon"></Icon>
           <span>{{ item.title }}</span>
         </div>
+      </div>
+      <div class="content">
+        <component :is="components[activeTool]"></component>
       </div>
     </div>
   </div>
@@ -114,7 +132,7 @@ const activeTool = ref("center");
           color: #fff;
           background-color: var(--themeColor);
         }
-        svg{
+        svg {
           font-size: 22px;
         }
       }

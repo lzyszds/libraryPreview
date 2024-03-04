@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import { userLogin } from "../api/userApi";
-import { useLocalStorage } from "@vueuse/core";
+import { useStorage } from "@vueuse/core";
+
 const host = import.meta.env.VITE_APP_HOST;
 const form = ref({
   username: "",
@@ -14,7 +15,9 @@ const login = () => {
   const { username, password, yzm } = form.value;
   userLogin(username, password, yzm).then((res) => {
     if (res.code === 200) {
-      useLocalStorage("token", res.data);
+      localStorage.setItem("token", res.data);
+      //设置cookie
+      document.cookie = `token=${res.data};path=/`;
       router.push("/mine");
     }
   });
@@ -66,7 +69,7 @@ const handleCaptcha = () => {
           <div class="yzm" ref="yzm">
             <ElInput
               v-model="form.yzm"
-              type="password"
+              type="text"
               placeholder="验证码"
               clearable
               @keydown.enter="login"

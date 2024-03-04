@@ -39,3 +39,18 @@ export const userLogin = async (username: string, password: string, captcha: str
   }) as any;
   return response.data.value;
 }
+
+/**
+ * 修改用户信息
+ * @param data 用户信息
+ * @returns
+*/
+export const userEdit = async (data: any) => {
+  const response = await useFetch(`/admin/Api/User/updateUserInfoPrivate`, {
+    method: "POST",
+    body: data,
+    /* 允许跨域 */
+    credentials: 'include',
+  }) as any;
+  return response.data.value;
+}
