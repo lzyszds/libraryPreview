@@ -1,12 +1,7 @@
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: [
-    '@element-plus/nuxt',
-    'nuxt-icon',
-    '@nuxtjs/color-mode',
-  ],
+  modules: ['@element-plus/nuxt', 'nuxt-icon', '@nuxtjs/color-mode', "@pinia/nuxt"],
   alias: {
     "~": "/<srcDir>",
     "@": "/<srcDir>",
@@ -18,7 +13,8 @@ export default defineNuxtConfig({
   css: [
     //系统默认样式
     '/assets/sass/style.scss',
-    '/assets/font/font.css'
+    '/assets/font/font.css',
+    '/assets/sass/element.scss',
   ],
   plugins: [
 
