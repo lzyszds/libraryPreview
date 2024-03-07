@@ -48,7 +48,7 @@ const host = import.meta.env.VITE_APP_HOST;
   border: 1px solid rgba(0, 0, 0, 0.12);
   cursor: pointer;
   &:hover {
-    border-color: #fff7c4;
+    border-color: var(--themeColor);
     img {
       box-shadow: none;
     }

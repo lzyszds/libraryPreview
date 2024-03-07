@@ -7,7 +7,7 @@ if (route.path === "/stack") {
   keyword.value = route.query.keyword as string;
 }
 const searchbook = () => {
-  if(keyword.value){
+  if (keyword.value) {
     router.push(`/stack?keyword=${keyword.value}`);
   } else {
     router.push(`/stack`);
@@ -59,7 +59,7 @@ const empty = () => {
 
 <style lang="scss" scoped>
 .header {
-  width: 100%;
+  width: clamp(550px, 100%, 100vw);
   height: 60px;
   background-color: transparent;
   font-size: 1.5rem;
@@ -68,12 +68,13 @@ const empty = () => {
   left: 0;
   z-index: 2;
   backdrop-filter: blur(0);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   .header_child {
     width: 60%;
     height: 100%;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 400px 420px;
+    grid-template-columns: minmax(120px, 1fr) minmax(200px, 400px) minmax(200px, 420px);
     justify-content: center;
     align-items: center;
 

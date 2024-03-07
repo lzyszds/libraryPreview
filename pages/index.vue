@@ -43,18 +43,26 @@ const activeCategory = (item: string) => {
     category.value = res.data;
   });
 };
+
+const changeCover = ref([]);
+onMounted(() => {
+  changeCover.value =
+    colorMode.value === "dark"
+      ? ["drakcover", "/admin/uploadFile/static/dark.jpg"]
+      : ["image", "/admin/uploadFile/static/cover.png"];
+});
+watch(colorMode, () => {
+  changeCover.value =
+    colorMode.value === "dark"
+      ? ["drakcover", "/admin/uploadFile/static/dark.jpg"]
+      : ["image", "/admin/uploadFile/static/cover.png"];
+});
 </script>
 
 <template>
   <div class="home">
     <div class="cover">
-      <img
-        v-if="colorMode.preference == 'light' || colorMode.preference == 'system'"
-        class="image"
-        src="../assets/images/cover.png"
-        alt=""
-      />
-      <img class="drakcover" v-else src="../assets/images/dark.jpg" alt="" />
+      <img :class="changeCover[0]" :src="changeCover[1]" alt="" />
     </div>
     <div class="bookContent">
       <div class="hot">
@@ -104,8 +112,6 @@ const activeCategory = (item: string) => {
   height: 100vh;
   .cover {
     height: 500px;
-    background-color: #f0f0f0;
-    background-color: #fff;
     text-align: center;
     .image {
       height: 500px;
