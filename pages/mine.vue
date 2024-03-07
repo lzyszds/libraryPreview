@@ -5,13 +5,11 @@ import { voucherToken } from "../api/userApi";
 import { useSessionStorage } from "@vueuse/core";
 import Center from "../components/Center.vue";
 import History from "../components/History.vue";
-import Collect from "../components/Collect.vue";
 const activeTool = useSessionStorage("activeTool", "Center");
 
 const components: any = {
   Center,
   History,
-  Collect,
 };
 const store = useStore();
 const hasRander = ref(false);
@@ -42,11 +40,6 @@ const tools = [
     title: "借阅历史",
     icon: "typcn:th-small-outline",
     component: "History",
-  },
-  {
-    title: "我的收藏",
-    icon: "typcn:star-outline",
-    component: "Collect",
   },
 ];
 const isActive = (item: any) => {

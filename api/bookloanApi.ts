@@ -17,3 +17,23 @@ export const getBorrowedBooks = async () => {
     return response.data.data
   } catch (e) { }
 }
+
+
+/**
+ * 借书接口
+ * @param bookId 书籍id
+ * @param copyId 书籍副本id
+ * @returns
+*/
+export const borrowBook = async (bookId: number) => {
+  try {
+    const response = await axios.post(`/admin/Api/BookLoan/borrowingBook`, {
+      bookId
+    }, {
+      headers: {
+        'token': useLocalStorage('token', '').value
+      }
+    }) as any;
+    return response.data
+  } catch (e) { }
+}

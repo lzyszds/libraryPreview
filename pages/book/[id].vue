@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { getBookInfo } from "../../api/bookApi";
+import { borrowBook } from "../../api/bookloanApi";
 import { useRoute } from "vue-router";
 const id = useRoute().params.id as string;
 const { data } = await getBookInfo(id);
 const host = import.meta.env.VITE_APP_HOST;
+const borrowing = () => {
+  //获取书籍副本id 通过书本id来获取
+  borrowBook(Number(id));
+};
 </script>
 
 <template>
@@ -41,7 +46,7 @@ const host = import.meta.env.VITE_APP_HOST;
           placement="right"
         >
           <ElButton v-if="data.is_borrowable == 1" color="#ff1e1e">馆内阅读</ElButton>
-          <ElButton v-else color="#626aef">借阅书籍</ElButton>
+          <ElButton @click="borrowing" v-else color="#626aef">借阅书籍</ElButton>
         </el-tooltip>
       </p>
       <p class="descTitle">简介</p>
@@ -124,10 +129,10 @@ const host = import.meta.env.VITE_APP_HOST;
   }
 }
 
-.dark-mode{
-  .container{
+.dark-mode {
+  .container {
     box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
-    .el-button{
+    .el-button {
       --el-button-text-color: #fff;
       --el-button-background-color: var(--themeColor);
     }

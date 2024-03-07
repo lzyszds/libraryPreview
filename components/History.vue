@@ -4,7 +4,6 @@ import type { Book } from "../types/book";
 const books = ref<Book[]>([]);
 onMounted(async () => {
   books.value = await getBorrowedBooks();
-  console.log(`lzy  books.value :`, books.value);
 });
 </script>
 
@@ -25,4 +24,11 @@ onMounted(async () => {
 
 <style lang="scss" scoped>
 @import url("../assets/sass/element.scss");
+.history {
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
 </style>
