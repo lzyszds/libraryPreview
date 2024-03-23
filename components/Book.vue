@@ -6,7 +6,7 @@ const { item } = defineProps<{ item: Book }>();
 
 const readIntDuction = () => {
   router.push({
-    path: "/book/" + item.book_id,
+    path: "/book/" + item.bookId,
   });
 };
 const host = import.meta.env.VITE_APP_HOST;
@@ -19,9 +19,9 @@ const host = import.meta.env.VITE_APP_HOST;
       alt=""
       :on-error="host + '/static/images/coverUndefined.png'"
     />
-    <div class="name">{{ item.book_name }}</div>
+    <div class="name">{{ item.bookName }}</div>
     <div class="category">
-      <span># {{ item.category_name }}</span>
+      <span># {{ item.categoryName }}</span>
       <span>{{ item.author }}</span>
     </div>
     <div class="desc">{{ item.introduction }}</div>
