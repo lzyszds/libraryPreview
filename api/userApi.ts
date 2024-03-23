@@ -12,7 +12,7 @@ export const voucherToken = async () => {
   try {
     const response = await axios.get(`/admin/Api/User/voucherToken`, {
       headers: {
-        'token': useLocalStorage('token', '').value
+        'token': useLocalStorage('token', '').value,
       }
     }) as any;
     return response.data.data

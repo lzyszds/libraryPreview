@@ -1,10 +1,22 @@
 <script setup lang="ts">
-import { getBorrowedBooks } from "../api/bookloanApi";
+import { getBorrowedBooks, getBookLoanByUserId } from "../api/bookloanApi";
 import type { Book } from "../types/book";
 const books = ref<Book[]>([]);
-onMounted(async () => {
+
+//获取借阅记录归还时间等详情信息
+const loanInfo = ref();
+const getLoanInfo = async () => {
+  loanInfo.value = await getBookLoanByUserId();
+};
+
+//获取借阅记录
+setTimeout(async () => {
+  await getLoanInfo();
   books.value = await getBorrowedBooks();
-});
+}, 50);
+const refresh = async () => {
+  books.value = await getBorrowedBooks();
+};
 </script>
 
 <template>
@@ -16,7 +28,7 @@ onMounted(async () => {
     <!-- 提醒没有数据 -->
     <div v-else style="text-align: center; margin-top: 20px">
       <el-empty description="书籍是最好的朋友，快来结识您的新朋友吧！">
-        <el-button type="primary">刷新</el-button>
+        <el-button type="primary" @click="refresh">刷新</el-button>
       </el-empty>
     </div>
   </div>

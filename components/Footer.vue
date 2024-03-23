@@ -18,8 +18,13 @@
   display: flex;
   justify-content: center;
   text-align: center;
-  p{
+  p {
     margin: 0;
+  }
+}
+.dark-mode {
+  .footer {
+    background-color: var(--darkBgcolor);
   }
 }
 </style>

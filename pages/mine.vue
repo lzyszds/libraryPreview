@@ -6,6 +6,7 @@ import { useSessionStorage } from "@vueuse/core";
 import Center from "../components/Center.vue";
 import History from "../components/History.vue";
 const activeTool = useSessionStorage("activeTool", "Center");
+const router = useRouter();
 
 const components: any = {
   Center,
@@ -16,6 +17,7 @@ const hasRander = ref(false);
 
 onMounted(async () => {
   const token = localStorage.getItem("token");
+  console.log(`lzy  token:`, token)
   //如果未登录，跳转到登录页面
   if (!token) {
     const router = useRouter();
@@ -27,6 +29,15 @@ onMounted(async () => {
     });
   } else {
     store.userInfo = await voucherToken();
+    if (!store.userInfo) {
+      ElNotification({
+        title: "提示",
+        message: "登录已过期，请重新登录",
+        type: "warning",
+      });
+      localStorage.removeItem("token");
+      router.push("/login");
+    }
     hasRander.value = true;
   }
 });
@@ -41,9 +52,22 @@ const tools = [
     icon: "typcn:th-small-outline",
     component: "History",
   },
+  {
+    title: "退出登录",
+    icon: "mingcute:exit-fill",
+    handle: () => {
+      localStorage.removeItem("token");
+      router.push("/login");
+    },
+  },
 ];
 const isActive = (item: any) => {
   return activeTool.value === item.component;
+};
+
+const active = (item: any) => {
+  if (item.handle) return item.handle();
+  activeTool.value = item.component;
 };
 </script>
 
@@ -60,7 +84,7 @@ const isActive = (item: any) => {
           v-for="(item, index) in tools"
           :key="index"
           :class="{ active: isActive(item) }"
-          @click="activeTool = item.component"
+          @click="active(item)"
           class="item"
         >
           <Icon :name="item.icon"></Icon>

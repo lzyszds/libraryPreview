@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useRouter } from "vue-router";
 import { userLogin } from "../api/userApi";
-import { useStorage } from "@vueuse/core";
+//@ts-ignore
+import { LNotification } from "lzyutils";
 
 const host = import.meta.env.VITE_APP_HOST;
 const form = ref({
@@ -19,6 +20,8 @@ const login = () => {
       //设置cookie
       document.cookie = `token=${res.data};path=/`;
       router.push("/mine");
+    } else {
+      LNotification(res.message);
     }
   });
 };
@@ -96,15 +99,14 @@ const handleCaptcha = () => {
 
 <style lang="scss" scoped>
 $color: #76d2ab;
-$fontColor: #5163ce;
+$fontColor: #5161ce;
 .login {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: $color;
   .card {
-    background-color: $fontColor;
+    background-color: $color;
     color: #fff;
     height: 400px;
     width: 800px;

@@ -30,6 +30,7 @@ const empty = () => {
           v-model="keyword"
           type="text"
           placeholder="书犹药也，善读之可以医愚"
+          @input="searchbook"
           @keydown.enter="searchbook"
         />
         <span @click="searchbook"><Icon name="mingcute:search-line"></Icon></span>
@@ -61,7 +62,7 @@ const empty = () => {
 .header {
   width: clamp(550px, 100%, 100vw);
   height: 60px;
-  background-color: transparent;
+  background-color: var(--bgcolor);
   font-size: 1.5rem;
   position: fixed;
   top: 0;
@@ -173,6 +174,9 @@ const empty = () => {
     a {
       filter: invert(1);
     }
+  }
+  .header {
+    background-color: var(--darkBgcolor);
   }
 }
 </style>

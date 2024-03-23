@@ -2,12 +2,19 @@
 import { getBookInfo } from "../../api/bookApi";
 import { borrowBook } from "../../api/bookloanApi";
 import { useRoute } from "vue-router";
+//@ts-ignore
+import { LNotification } from "lzyutils";
 const id = useRoute().params.id as string;
 const { data } = await getBookInfo(id);
 const host = import.meta.env.VITE_APP_HOST;
-const borrowing = () => {
+const borrowing = async () => {
   //获取书籍副本id 通过书本id来获取
-  borrowBook(Number(id));
+  const { data, message } = await borrowBook(Number(id));
+  if (data) {
+    LNotification("借阅成功");
+  } else {
+    LNotification("借阅失败：" + message);
+  }
 };
 </script>
 
