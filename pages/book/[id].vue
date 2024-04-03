@@ -24,15 +24,15 @@ const borrowing = async () => {
       <img :src="host + data.cover" alt="书籍封面" />
     </section>
     <section class="description">
-      <h1>《{{ data.book_name }}》</h1>
+      <h1>《{{ data.bookName }}》</h1>
       <p>
         <span>作者：</span>
         <nuxt-link :to="'/stack?keyword=' + data.author">{{ data.author }}</nuxt-link>
       </p>
       <p>
         <span>学科：</span>
-        <nuxt-link :to="'/stack?keyword=' + data.category_name">
-          {{ data.category_name }}
+        <nuxt-link :to="'/stack?keyword=' + data.categoryName">
+          {{ data.categoryName }}
         </nuxt-link>
       </p>
       <p>
@@ -41,18 +41,14 @@ const borrowing = async () => {
           {{ data.publisher }}
         </nuxt-link>
       </p>
-      <p><span>出版日期：</span>{{ data.publish_date }}</p>
+      <p><span>出版日期：</span>{{ data.publishDate }}</p>
 
       <p><span>ISBN：</span>{{ data.isbn }}</p>
       <p>
         <span>是否允许外借：</span>
-        <el-tooltip
-          class="box-item"
-          effect="dark"
-          :content="data.is_borrowable == 1 ? '不支持借阅' : '点击借阅'"
-          placement="right"
-        >
-          <ElButton v-if="data.is_borrowable == 1" color="#ff1e1e">馆内阅读</ElButton>
+        <el-tooltip class="box-item" effect="dark" :content="data.isBorrowable == 1 ? '不支持借阅' : '点击借阅'"
+          placement="right">
+          <ElButton v-if="data.isBorrowable == 1" color="#ff1e1e">馆内阅读</ElButton>
           <ElButton @click="borrowing" v-else color="#626aef">借阅书籍</ElButton>
         </el-tooltip>
       </p>
@@ -79,11 +75,13 @@ const borrowing = async () => {
     "img author"
     "img publisher"
     "img publish_date";
+
   .book-info {
     perspective: 1000px;
     transform-style: preserve-3d;
     height: 400px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+
     img {
       grid-area: img;
       width: 300px;
@@ -103,22 +101,27 @@ const borrowing = async () => {
       font-size: 3rem;
       font-family: "dindin";
     }
+
     span {
       color: #999;
     }
+
     a {
       color: var(--themeColor);
       cursor: pointer !important;
+
       &:hover {
         color: rgb(0, 30, 255);
       }
     }
+
     .descTitle {
       font-size: 2rem;
       font-family: "dindin";
       font-weight: 600;
       position: relative;
       padding-left: 10px;
+
       &:after {
         content: "";
         width: 5px;
@@ -131,6 +134,7 @@ const borrowing = async () => {
       }
     }
   }
+
   .el-button {
     cursor: pointer !important;
   }
@@ -139,6 +143,7 @@ const borrowing = async () => {
 .dark-mode {
   .container {
     box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+
     .el-button {
       --el-button-text-color: #fff;
       --el-button-background-color: var(--themeColor);

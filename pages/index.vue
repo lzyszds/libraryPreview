@@ -9,7 +9,7 @@ import {
 const colorMode = useColorMode();
 // 获取热门分类
 const hotCategory = (await getTopNCategories(5)).data.map(
-  (item: any) => item.category_name
+  (item: any) => item.categoryName
 );
 // 分类值
 const categoryValue = ref<any>("智能制造");
@@ -29,6 +29,7 @@ try {
     getBookListByField(categoryValue.value, 1, 5, "category_name"),
     getBookListByField("小说", 1, 5, "category_name"),
   ]);
+  console.log(`lzy  results:`, results)
   hot.value = results[0].data;
   news.value = results[1].data;
   category.value = results[2].data;
@@ -44,7 +45,7 @@ const activeCategory = (item: string) => {
   });
 };
 
-const changeCover = ref([]);
+const changeCover = ref<any>([]);
 onMounted(() => {
   changeCover.value =
     colorMode.value === "dark"

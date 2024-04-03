@@ -40,6 +40,29 @@ export const userLogin = async (username: string, password: string, captcha: str
   return response.data.value;
 }
 
+
+/**
+ * 注册
+ * @param username 用户名
+ * @param password 密码
+ * @param name 名称
+ * @param sex 名称
+ * @param email 邮箱
+ * @param phone 手机号
+ * @param addres 地址
+ * @returns
+ */
+
+export const userRegister = async (form: any) => {
+  const { username, password, name, sex, email, addres, phone } = form;
+  const response = await useFetch(`/admin/Api/User/register`, {
+    method: "POST",
+    body: { username, password, name, sex, email, addres, phone },
+    /* 允许跨域 */
+    credentials: 'include',
+  }) as any;
+  return response.data.value;
+}
 /**
  * 修改用户信息
  * @param data 用户信息

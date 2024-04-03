@@ -17,7 +17,6 @@ const hasRander = ref(false);
 
 onMounted(async () => {
   const token = localStorage.getItem("token");
-  console.log(`lzy  token:`, token)
   //如果未登录，跳转到登录页面
   if (!token) {
     const router = useRouter();

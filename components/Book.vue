@@ -14,11 +14,7 @@ const host = import.meta.env.VITE_APP_HOST;
 
 <template>
   <div class="book" @click="readIntDuction()">
-    <img
-      :src="host + item.cover"
-      alt=""
-      :on-error="host + '/static/images/coverUndefined.png'"
-    />
+    <img :src="host + item.cover" alt="" :on-error="host + '/static/images/coverUndefined.png'" />
     <div class="name">{{ item.bookName }}</div>
     <div class="category">
       <span># {{ item.categoryName }}</span>
@@ -47,12 +43,15 @@ const host = import.meta.env.VITE_APP_HOST;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.03);
   border: 1px solid rgba(0, 0, 0, 0.12);
   cursor: pointer;
+
   &:hover {
     border-color: var(--themeColor);
+
     img {
       box-shadow: none;
     }
   }
+
   img {
     height: 120px;
     object-fit: cover;
@@ -61,6 +60,7 @@ const host = import.meta.env.VITE_APP_HOST;
     border-radius: 10px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
   }
+
   .name {
     font-size: 16px;
     /* 超出显示省略号 */
@@ -69,10 +69,12 @@ const host = import.meta.env.VITE_APP_HOST;
     white-space: nowrap;
     font-family: "dindin";
   }
+
   .category {
     font-size: 10px;
     display: flex;
     gap: 10px;
+
     span {
       width: 50px;
       height: 12px;
@@ -88,6 +90,7 @@ const host = import.meta.env.VITE_APP_HOST;
       border-radius: 5px;
     }
   }
+
   .desc {
     font-size: 12px;
     height: 48px;
@@ -107,15 +110,18 @@ const host = import.meta.env.VITE_APP_HOST;
   .book {
     background-color: #333;
     border-color: #fff;
+
     .name {
       color: #fff;
     }
+
     .category {
       span {
         background-color: #fff;
         color: #333;
       }
     }
+
     .desc {
       background-color: #555;
     }

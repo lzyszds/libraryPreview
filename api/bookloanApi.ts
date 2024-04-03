@@ -1,10 +1,6 @@
 import { useLocalStorage } from '@vueuse/core'
 import axios from 'axios'
 
-const headers = {
-  'token': useLocalStorage('token', '').value
-}
-console.log(`lzy  headers:`, headers)
 
 /**
  * 根据用户id获取用户借阅书籍列表
@@ -15,7 +11,9 @@ console.log(`lzy  headers:`, headers)
 export const getBorrowedBooks = async () => {
   try {
     const response = await axios.get(`/admin/Api/BookLoan/getBorrowedBooks`, {
-      headers
+      headers: {
+        'token': localStorage.getItem('token') || ''
+      }
     }) as any;
     return response.data.data
   } catch (e) { }
@@ -30,7 +28,9 @@ export const getBorrowedBooks = async () => {
 export const getBookLoanByUserId = async () => {
   try {
     const response = await axios.get(`/admin/Api/BookLoan/getBookLoanByUserId`, {
-      headers
+      headers: {
+        'token': localStorage.getItem('token') || ''
+      }
     }) as any;
     return response.data.data
   } catch (e) { }
@@ -48,7 +48,9 @@ export const borrowBook = async (bookId: number) => {
     const response = await axios.post(`/admin/Api/BookLoan/borrowingBook`, {
       bookId
     }, {
-      headers
+      headers: {
+        'token': localStorage.getItem('token') || ''
+      }
     }) as any;
     return response.data
   } catch (e) { }
