@@ -3,18 +3,45 @@ import { getBookInfo } from "../../api/bookApi";
 import { borrowBook } from "../../api/bookloanApi";
 import { useRoute } from "vue-router";
 //@ts-ignore
-import { LNotification } from "lzyutils";
+import { tipNotify } from "lzyutils";
 const id = useRoute().params.id as string;
 const { data } = await getBookInfo(id);
 const host = import.meta.env.VITE_APP_HOST;
+let timer: any = null;
+//设定一个定时器，来实现防抖
 const borrowing = async () => {
-  //获取书籍副本id 通过书本id来获取
-  const { data, message } = await borrowBook(Number(id));
-  if (data) {
-    LNotification("借阅成功");
-  } else {
-    LNotification("借阅失败：" + message);
+  if (timer) {
+    clearTimeout(timer);
   }
+  timer = setTimeout(async () => {
+    //获取书籍副本id 通过书本id来获取
+    try {
+      ElNotification.closeAll();
+      const res = await borrowBook(data.bookId);
+      if (!res) {
+        return ElNotification({
+          title: "借阅失败",
+          message: "请前往我的界面先登录",
+          type: "error",
+          position: "bottom-right",
+        });
+      }
+      return ElNotification({
+        title: "借阅成功",
+        message: "请在我的借阅中查看",
+        type: "success",
+        position: "bottom-right",
+      });
+    } catch (error) {
+      ElNotification({
+        title: "借阅失败",
+        message: "请先登录",
+        type: "error",
+        position: "bottom-right",
+      });
+    }
+    clearTimeout(timer);
+  }, 300);
 };
 </script>
 

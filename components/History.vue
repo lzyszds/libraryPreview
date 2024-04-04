@@ -23,7 +23,12 @@ const refresh = async () => {
   <div>
     <h1 style="text-align: center">借阅记录中心</h1>
     <div v-if="books.length != 0" class="history">
-      <Book v-for="(item, index) in books" :key="index" :item="item"></Book>
+      <div v-for="(item, index) in books" :key="index" class="divRuturn">
+        <Book :item="item">
+        </Book>
+        <span class="trueRuturn" v-if="loanInfo[index].returnDate">已归还</span>
+        <span class="falseRuturn" v-else>未归还</span>
+      </div>
     </div>
     <!-- 提醒没有数据 -->
     <div v-else style="text-align: center; margin-top: 20px">
@@ -36,11 +41,43 @@ const refresh = async () => {
 
 <style lang="scss" scoped>
 @import url("../assets/sass/element.scss");
+
 .history {
   width: 90%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
+}
+
+.divRuturn {
+  display: grid;
+  gap: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.trueRuturn,
+.falseRuturn {
+  padding: 3px 10px;
+  border-radius: 5px;
+  width: 30%;
+  text-align: center;
+  font-size: 1.2rem;
+  font-family: 'dindin';
+  color: #fff;
+  position: absolute;
+  top: 10px;
+  right: -40px;
+  transform: rotate(45deg);
+}
+
+
+.trueRuturn {
+  background-color: var(--themeColor);
+}
+
+.falseRuturn {
+  background-color: rgb(255, 75, 75);
 }
 </style>

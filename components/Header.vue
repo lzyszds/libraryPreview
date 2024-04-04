@@ -3,9 +3,7 @@ const colorMode = useColorMode();
 const route = useRoute();
 const router = useRouter();
 const keyword = ref("");
-if (route.path === "/stack") {
-  keyword.value = route.query.keyword as string;
-}
+
 const searchbook = () => {
   if (keyword.value) {
     router.push(`/stack?keyword=${keyword.value}`);
@@ -16,6 +14,14 @@ const searchbook = () => {
 const empty = () => {
   keyword.value = "";
 };
+
+watch(
+  () => route.query.keyword,
+  (val) => {
+    keyword.value = val as string;
+  }
+);
+
 </script>
 
 <template>
@@ -26,32 +32,26 @@ const empty = () => {
         <h3>书香雅苑</h3>
       </div>
       <div class="search">
-        <input
-          v-model="keyword"
-          type="text"
-          placeholder="书犹药也，善读之可以医愚"
-          @input="searchbook"
-          @keydown.enter="searchbook"
-        />
-        <span @click="searchbook"><Icon name="mingcute:search-line"></Icon></span>
+        <input v-model="keyword" type="text" placeholder="书犹药也，善读之可以医愚" @input="searchbook"
+          @keydown.enter="searchbook" />
+        <span @click="searchbook">
+          <Icon name="mingcute:search-line"></Icon>
+        </span>
       </div>
       <ul>
-        <li @click="empty"><NuxtLink to="/">首页</NuxtLink></li>
-        <li @click="empty"><NuxtLink to="/stack">书库</NuxtLink></li>
-        <li @click="empty"><NuxtLink to="/mine">我的</NuxtLink></li>
+        <li @click="empty">
+          <NuxtLink to="/">首页</NuxtLink>
+        </li>
+        <li @click="empty">
+          <NuxtLink to="/stack">书库</NuxtLink>
+        </li>
+        <li @click="empty">
+          <NuxtLink to="/mine">我的</NuxtLink>
+        </li>
         <li class="isDark">
-          <Icon
-            @click="$colorMode.preference = 'dark'"
-            v-if="colorMode.preference == 'light'"
-            name="line-md:sun-rising-filled-loop"
-            class="light"
-          ></Icon>
-          <Icon
-            @click="$colorMode.preference = 'light'"
-            v-else
-            name="line-md:moon"
-            class="dark"
-          ></Icon>
+          <Icon @click="$colorMode.preference = 'dark'" v-if="colorMode.preference == 'light'"
+            name="line-md:sun-rising-filled-loop" class="light"></Icon>
+          <Icon @click="$colorMode.preference = 'light'" v-else name="line-md:moon" class="dark"></Icon>
         </li>
       </ul>
     </div>
@@ -70,6 +70,7 @@ const empty = () => {
   z-index: 2;
   backdrop-filter: blur(0);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
   .header_child {
     width: 60%;
     height: 100%;
@@ -86,10 +87,12 @@ const empty = () => {
       gap: 5px;
       cursor: pointer;
       user-select: none;
+
       img {
         width: 30px;
       }
     }
+
     .search {
       height: 60%;
       background-color: #eee;
@@ -97,6 +100,7 @@ const empty = () => {
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       input {
         border: none;
         outline: none;
@@ -105,6 +109,7 @@ const empty = () => {
         font-family: "dindin";
         width: 100%;
       }
+
       span {
         cursor: pointer;
         font-size: 2rem;
@@ -118,6 +123,7 @@ const empty = () => {
         color: #fff;
       }
     }
+
     ul {
       display: flex;
       justify-content: center;
@@ -126,8 +132,10 @@ const empty = () => {
       list-style: none;
       padding: 0;
       margin: 0;
+
       li {
         cursor: pointer;
+
         a {
           text-decoration: none;
           color: #000;
@@ -135,19 +143,23 @@ const empty = () => {
           transition: 0.5s color;
           font-weight: 600;
         }
+
         &:hover a {
           color: var(--themeColor);
         }
       }
     }
+
     .isDark {
       display: flex;
       font-size: 2.2rem;
       cursor: pointer;
       padding: 0.2rem;
+
       svg {
         padding: 0.2rem;
       }
+
       &:active {
         svg {
           border-radius: 50%;
@@ -156,6 +168,7 @@ const empty = () => {
           &.light {
             background-color: #eee;
           }
+
           &.dark {
             background-color: #333;
           }
@@ -166,15 +179,18 @@ const empty = () => {
 }
 
 .dark-mode {
+
   .logo,
   h3 {
     filter: invert(1);
   }
+
   ul {
     a {
       filter: invert(1);
     }
   }
+
   .header {
     background-color: var(--darkBgcolor);
   }
